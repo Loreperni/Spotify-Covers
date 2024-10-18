@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creazione Collage in Corso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1DB954;
+            margin-bottom: 20px;
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #1DB954;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .message {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+        }
+        #status {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spotify Album Collage Creator</h1>
+        <div class="loader"></div>
+        <p>Creazione del collage in corso... Attendere prego.</p>
+        <div id="status"></div>
+    </div>
+    <script>
+        function checkCollageStatus() {
+            fetch('/collage-status')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'complete') {
+                        document.getElementById('status').innerText = `Total albums retrieved: ${data.totalAlbums}`;
+                        setTimeout(() => {
+                            window.location.href = '/collage';
+                        }, 2000);
+                    } else {
+                        setTimeout(checkCollageStatus, 2000);
+                    }
+                })
+                .catch(() => {
+                    setTimeout(checkCollageStatus, 5000);
+                });
+        }
+        checkCollageStatus();
+    </script>
+</body>
+</html>

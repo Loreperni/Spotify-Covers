@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I tuoi Album Spotify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #1DB954;
+            text-align: center;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .sort-select {
+            padding: 10px 40px 10px 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #333;
+        }
+        .sort-direction {
+            background-color: transparent;
+            border: none;
+            color: #1DB954;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .album {
+            background-color: white;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .create-collage-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #1DB954;
+            color: white;
+            text-align: center;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>I tuoi Album Spotify</h1>
+    <div class="controls">
+        <select id="sortBy" class="sort-select">
+            <option value="default" selected>Ordine predefinito</option>
+            <option value="name">Nome album</option>
+            <option value="artist">Artista</option>
+        </select>
+        <button class="sort-direction" id="sortDirection">↑</button>
+    </div>
+    <div class="album-grid" id="albumGrid">
+        <% albums.forEach(album=> { %>
+            <div class="album" data-name="<%= album.name %>" data-artist="<%= album.artist %>">
+                <img src="<%= album.image %>" alt="<%= album.name %>"
+                    style="width: 180px; height: 180px; object-fit: cover; border-radius: 4px;">
+                <p class="album-title">
+                    <%= album.name %>
+                </p>
+                <p class="album-artist">
+                    <%= album.artist %>
+                </p>
+            </div>
+        <% }); %>
+    </div>
+    <a href="#" class="create-collage-btn" id="createCollageBtn">Crea Collage</a>
+    <script src="/js/albums.js"></script>
+</body>
+</html>
