@@ -31,8 +31,8 @@ Before running the application, ensure you have the following installed:
 Clone this repository to your local machine using:
 
 ```bash
-git clone https://github.com/your-username/spotify-album-collage-creator.git
-cd spotify-album-collage-creator
+git clone https://github.com/Loreperni/spotify-covers
+cd spotify-covers
 2. Install Dependencies
 Navigate to the project directory and install the required packages:
 
@@ -42,7 +42,7 @@ Create a .env file in the root of the project directory and add your Spotify API
 
 CLIENT_ID=your_spotify_client_id
 CLIENT_SECRET=your_spotify_client_secret
-You can create an application on the Spotify Developer Dashboard to get your credentials.
+You need to create an application on the Spotify Developer Dashboard to get your credentials.
 
 4. Run the Application
 To start the server, run:
